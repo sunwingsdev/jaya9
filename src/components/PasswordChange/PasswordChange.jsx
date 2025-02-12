@@ -16,24 +16,26 @@ const PasswordChange = () => {
   };
 
   return (
-    <div className="bg-white min-h-screen">
-      <div className="mx-auto  px-2 lg:px-0 lg:m-5   min-h-scren max-w-5xl">
-        <div className=" bg-informationBackground">
+    <div className="bg-white pb-4">
+      <div className="mx-auto  px-2 lg:px-0 lg:m-5 md:m-   max-w-5xl md:max-w-5xl lg:max-w-7xl">
+        <div className=" bg-informationBackground  ">
           {passwordData.map((item) => (
             <div
               key={item.id}
-              className="flex flex-row items-center p-6 px-3 lg:px-0 md:px-6  lg:p-6 gap-1 lg:gap-4 md:gap-4 justify-start lg:justify-around"
+              className="flex flex-row lg:grid lg:grid-cols-3 lg:justify-items-center  items-center md:justify-around p-6 px-3 lg:px-20 md:px-6 lg:gap-x-20  lg:p-6 gap-1 md:gap-4 justify-around lg:justify-between"
             >
-              <h3 className="lg:text-md text-sm w-1/3 text-left lg:text-right">
+              <h3 className="lg:text-md text-sm lg:w-auto w-1/3 text-left lg:text-right">
                 {item.label}
               </h3>
-              <input
+             
+             <input
                 type="password"
                 placeholder="এখানে পাসওয়ার্ড পূরণ করুন"
-                className="bg-informationBackground  outline-none"
+                className="bg-informationBackground    outline-none"
                 value={passwords[item.id]}
                 onChange={(e) => handlePasswordChange(item.id, e.target.value)}
               />
+            
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5 text-gray-500"
@@ -50,12 +52,13 @@ const PasswordChange = () => {
             </div>
           ))}
         </div>
-        <div className="pt-4">
-          <button className="w-full p-2 text-white justify-items-center  bg-common-blue max-w-5xl">
+        
+      </div>
+      <div className=" mx-auto max-w-[300px] lg:max-w-4xl ">
+          <button className="w-full p-2 text-white justify-items-center  bg-common-blue ">
             জমা দিন
           </button>
         </div>
-      </div>
     </div>
   );
 };

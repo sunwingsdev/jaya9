@@ -74,8 +74,8 @@ const menuItems = [
   },
 ];
 
-const Header = () => {
-  const [isOpen, setIsOpen] = useState(false); 
+const Header = ({isModal}) => {
+  const [isOpen, setIsOpen] = useState(false);
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [isOpenLanguage, setIsOpenLanguage] = useState(false);
   const [amount, setAmount] = useState(0); // Initial wallet amount
@@ -113,7 +113,7 @@ const Header = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
   return (
-    <header className="sticky  top-0 bg-white shadow-md font-sans   z-40">
+    <header className={`sticky  top-0 bg-white shadow-md font-sans z-40 ${isModal?'sticky top-16' : 'sticky top-0'}`}>
       <nav className="flex    bg-common-blue justify-center lg:justify-around items-center   py-2">
         <img src={Jayalogo} alt="" className="h-8 lg:h-12  " />
 
@@ -146,16 +146,16 @@ const Header = () => {
             </button>
           </div>
           <button
-              onClick={() => setIsOpenModal(true)}
-              className="border border-white px-4 py-2 hover:border-orange-500 outline-none rounded-sm text-white"
-            >
-              প্রবেশ করুন
-            </button>
-            <ProbesKorun
-              isOpenModal={isOpenModal}
-              handleClose={() => setIsOpenModal(false)}
-            />
-             <Link to="/nibondon">
+            onClick={() => setIsOpenModal(true)}
+            className="border border-white px-4 py-2 hover:border-orange-500 outline-none rounded-sm text-white"
+          >
+            প্রবেশ করুন
+          </button>
+          <ProbesKorun
+            isOpenModal={isOpenModal}
+            handleClose={() => setIsOpenModal(false)}
+          />
+          <Link to="/nibondon">
             <button className="bg-common-orange  px-8  py-2 rounded-sm">
               নিবন্ধন
             </button>
@@ -193,39 +193,38 @@ const Header = () => {
           </div>
         </ul>
 
-        <div className="fixed p-2 bg-toolbarbackground text-sm  bottom-0 grid grid-cols-4 lg:hidden left-0 w-full  text-white">
-          
+        <div className="fixed  p-2 bg-toolbarbackground text-sm  bottom-0 grid grid-cols-4 lg:hidden left-0 w-full  text-white">
           <Link to="/">
-          <div className=" flex flex-col gap-1 items-center  ">
-            <img src={toolbarhomelogo} alt="" className="w-5 h-auto" />
-            <button>বাড়ি</button>
-          </div>
+            <div className=" flex flex-col gap-1 items-center  ">
+              <img src={toolbarhomelogo} alt="" className="w-5 h-auto" />
+              <button>বাড়ি</button>
+            </div>
           </Link>
-          <Link to='/promotion'>
-          <div className=" flex flex-col gap-1 items-center  ">
-            <img src={toolbarpromotionlogo} alt="" className="w-5 h-auto" />
-            <button>প্রমোশন</button>
-          </div>
-          </Link>
-
-          <Link to='/amanot'>
-          <div className="  flex flex-col gap-1 items-center  text-white">
-            <img src={toolbardepositlogo} alt="" className="w-5 h-auto" />
-            <button>আমানত</button>
-          </div>
+          <Link to="/promotion">
+            <div className=" flex flex-col gap-1 items-center  ">
+              <img src={toolbarpromotionlogo} alt="" className="w-5 h-auto" />
+              <button>প্রমোশন</button>
+            </div>
           </Link>
 
-          <Link to='/information' >
-          <div className="   flex flex-col gap-1 items-center  text-white">
-           <img src={toolbarprofile} alt="" className="w-5 h-auto" />
-            <button>প্রোফাইল</button>
-          </div>
+          <Link to="/amanot">
+            <div className="  flex flex-col gap-1 items-center  text-white">
+              <img src={toolbardepositlogo} alt="" className="w-5 h-auto" />
+              <button>আমানত</button>
+            </div>
+          </Link>
+
+          <Link to="/information">
+            <div className="   flex flex-col gap-1 items-center  text-white">
+              <img src={toolbarprofile} alt="" className="w-5 h-auto" />
+              <button>প্রোফাইল</button>
+            </div>
           </Link>
         </div>
       </nav>
-      <nav className="bg-common-orange text-white">
+      <nav className="bg-common-orange  text-white">
         {/* Large Screen Navbar */}
-        <ul className="hidden  lg:flex text-sm justify-center items-center  whitespace-nowrap ">
+        <ul className="hidden  relative  lg:flex text-sm justify-center items-center  whitespace-nowrap ">
           <Link to="/downloadmobileapp" className="">
             <li
               className={`border-r p-2 border-white border-opacity-20 transition ${
@@ -272,13 +271,13 @@ const Header = () => {
             className="text-white hover:text-gray-300 transition"
           >
             <li
-              className={`relative inline-block ${
+              className={` inline-block ${
                 location.pathname === "/cricket"
                   ? "border-b-2 border-yellow-300 border-r-[rgba(255,255,255,0.2)]"
                   : "border-r-[rgba(255,255,255,0.2)]" //
               } `}
             >
-              <div className="group relative border-r border-white p-2 border-opacity-20">
+              <div className="group   border-r border-white p-2 border-opacity-20">
                 ক্রিকেট
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -295,17 +294,17 @@ const Header = () => {
                   <path d="M6 9l6 6 6-6"></path>
                 </svg>
                 <div
-                  className="absolute -left-[241px]  mt-1 w-screen max-w-[99vw] bg-white text-black p-2 rounded-md shadow-xl
+                  className="absolute left-0 right-0  mt-1    bg-white text-black p-2 rounded-md shadow-xl
         opacity-0 invisible transform scale-y-0 origin-top transition-all duration-700 ease-out
         group-hover:opacity-100 group-hover:visible group-hover:scale-y-100 z-10"
                 >
-                  <ul className="grid grid-cols-3 px-48 gap-1   ">
+                  <ul className="grid grid-cols-3 mx-auto max-w-5xl  gap-1   ">
                     <li>
                       <div>
                         <img
                           src={Cricketlogo}
                           alt="Cricket Logo"
-                          className="w-2/4 rounded-md border-black hover:border"
+                          className="w-[50%] rounded-md border-black hover:border"
                         />
                         <div className="flex pt-2 w-2/4 flex-row items-center justify-center">
                           <h3 className="font-bold">Betswiz</h3>
@@ -324,13 +323,13 @@ const Header = () => {
             className="text-white hover:text-gray-300 transition"
           >
             <li
-              className={`relative inline-block ${
+              className={` inline-block ${
                 location.pathname === "/livecasino"
                   ? "border-b-2 border-yellow-300 border-r-[rgba(255,255,255,0.2)]"
                   : "border-r-[rgba(255,255,255,0.2)]" //
               } `}
             >
-              <div className="group relative border-r border-white p-2 border-opacity-20">
+              <div className="group  border-r border-white p-2 border-opacity-20">
                 লাইভ ক্যাসিনো
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -347,39 +346,38 @@ const Header = () => {
                   <path d="M6 9l6 6 6-6"></path>
                 </svg>
                 <div
-                  className="absolute -left-[331px]  mt-1 w-screen max-w-[99vw] bg-white text-black p-2 rounded-md shadow-xl
+                  className="absolute left-0 right-0 mt-1  bg-white text-black p-2 rounded-md shadow-xl
         opacity-0 invisible transform scale-y-0 origin-top transition-all duration-700 ease-out
         group-hover:opacity-100 group-hover:visible group-hover:scale-y-100"
                 >
-                  <ul className="flex w-3/5 gap-2 px-48  ">
-                    <li>
+                  <ul className="flex gap-2 mx-auto max-w-5xl">
+                    <li className="w-[15%]">
                       <img
                         src={livecasinologo1}
                         alt="Cricket Logo"
-                        className="w-full  rounded-md border-black hover:border"
+                        className="w-full h-auto rounded-md border-black hover:border object-contain"
                       />
                       <div className="flex pt-2 w-full flex-row items-center justify-center">
                         <h3 className="font-bold">Evolution Gaming</h3>
                         <img src={betswizicon} alt="" className="w-5 h-5" />
                       </div>
                     </li>
-                    <li>
+                    <li className="w-[15%]">
                       <img
                         src={livecasinologo2}
                         alt="Cricket Logo"
-                        className="w-full rounded-md border-black hover:border"
+                        className="w-full h-auto rounded-md border-black hover:border object-contain"
                       />
                       <div className="flex pt-2 w-full flex-row items-center justify-center">
-                        <h3 className="font-bold">Pragmatic play</h3>
+                        <h3 className="font-bold">Pragmatic Play</h3>
                         <img src={betswizicon} alt="" className="w-5 h-5" />
                       </div>
                     </li>
-
-                    <li>
+                    <li className="w-[15%]">
                       <img
                         src={livecasinologo3}
                         alt="Cricket Logo"
-                        className="w-full rounded-md border-black hover:border"
+                        className="w-full h-auto rounded-md border-black hover:border object-contain"
                       />
                       <div className="flex pt-2 w-full flex-row items-center justify-center">
                         <h3 className="font-bold">AE Casino</h3>
@@ -397,13 +395,13 @@ const Header = () => {
             className="text-white hover:text-gray-300 transition"
           >
             <li
-              className={`relative inline-block ${
+              className={` inline-block ${
                 location.pathname === "/slotgames"
                   ? "border-b-2 border-yellow-300 border-r-[rgba(255,255,255,0.2)]"
                   : "border-r-[rgba(255,255,255,0.2)]"
               }`}
             >
-              <div className="group relative border-r border-white p-2 border-opacity-20">
+              <div className="group  border-r border-white p-2 border-opacity-20">
                 স্লট গেম
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -420,11 +418,11 @@ const Header = () => {
                   <path d="M6 9l6 6 6-6"></path>
                 </svg>
                 <div
-                  className="absolute -left-[480px] mt-1 w-screen max-w-[100vw] bg-white text-black p-2 rounded-md shadow-xl
+                  className="absolute left-0 right-0 mt-1  bg-white text-black p-2 rounded-md shadow-xl
         opacity-0 invisible transform scale-y-0 origin-top transition-all duration-700 ease-out
         group-hover:opacity-100 group-hover:visible group-hover:scale-y-100"
                 >
-                  <ul className="grid grid-cols-6 w-3/4 gap-4 pl-48">
+                  <ul className="grid grid-cols-6  mx-auto max-w-5xl gap-4 ">
                     {[
                       { src: slotlogo1, title: "JILI", icon: betswizicon },
                       { src: slotlogo2, title: "TITO", icon: betswizicon },
@@ -469,13 +467,13 @@ const Header = () => {
             className="text-white hover:text-gray-300 transition"
           >
             <li
-              className={`relative inline-block ${
+              className={` inline-block ${
                 location.pathname === "/tablegames"
                   ? "border-b-2 border-yellow-300 border-r-[rgba(255,255,255,0.2)]"
                   : "border-r-[rgba(255,255,255,0.2)]" //
               } `}
             >
-              <div className="group relative border-r border-white p-2 border-opacity-20">
+              <div className="group  border-r border-white p-2 border-opacity-20">
                 টেবিল গেম
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -492,12 +490,12 @@ const Header = () => {
                   <path d="M6 9l6 6 6-6"></path>
                 </svg>
                 <div
-                  className="absolute -left-[561px]  mt-1 w-screen max-w-[99vw] bg-white text-black p-2 rounded-md shadow-xl
+                  className="absolute left-0 right-0  mt-1  bg-white text-black p-2 rounded-md shadow-xl
         opacity-0 invisible transform scale-y-0 origin-top transition-all duration-700 ease-out
         group-hover:opacity-100 group-hover:visible group-hover:scale-y-100"
                 >
-                  <ul className="grid grid-cols-5 w-3/4 px-48 gap-2   ">
-                    <li>
+                  <ul className="grid grid-cols-6  mx-auto max-w-5xl     ">
+                    <li className="w-[90%]">
                       <img
                         src={tablelogo1}
                         alt="Cricket Logo"
@@ -508,7 +506,7 @@ const Header = () => {
                         <img src={newicon} alt="" className="w-5 h-5" />
                       </div>
                     </li>
-                    <li>
+                    <li className="w-[90%]">
                       <img
                         src={tablelogo2}
                         alt="Cricket Logo"
@@ -519,7 +517,7 @@ const Header = () => {
                         <img src={betswizicon} alt="" className="w-5 h-5" />
                       </div>
                     </li>
-                    <li>
+                    <li className="w-[90%]">
                       <img
                         src={tablelogo3}
                         alt="Cricket Logo"
@@ -530,7 +528,7 @@ const Header = () => {
                         <img src={betswizicon} alt="" className="w-5 h-5" />
                       </div>
                     </li>
-                    <li>
+                    <li className="w-[90%]">
                       <img
                         src={tablelogo4}
                         alt="Cricket Logo"
@@ -540,7 +538,7 @@ const Header = () => {
                         <h3 className="font-bold">King Midas</h3>
                       </div>
                     </li>
-                    <li>
+                    <li className="w-[90%]">
                       <img
                         src={tableelogo5}
                         alt="Cricket Logo"
@@ -561,13 +559,13 @@ const Header = () => {
             className="text-white hover:text-gray-300 transition"
           >
             <li
-              className={`relative inline-block ${
+              className={` inline-block ${
                 location.pathname === "/sports"
                   ? "border-b-2 border-yellow-300 border-r-[rgba(255,255,255,0.2)]"
                   : "border-r-[rgba(255,255,255,0.2)]" //
               } `}
             >
-              <div className="group relative border-r border-white p-2 border-opacity-20">
+              <div className="group  border-r border-white p-2 border-opacity-20">
                 স্পোর্টস
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -583,13 +581,13 @@ const Header = () => {
                 >
                   <path d="M6 9l6 6 6-6"></path>
                 </svg>
-                <div className="relative group">
+                <div className=" group">
                   <div
-                    className="absolute -left-[680px] mt-1 w-screen max-w-[99vw] bg-white text-black p-2 rounded-md shadow-xl
+                    className="absolute left-0 right-0 mt-1  bg-white text-black p-2 rounded-md shadow-xl
         opacity-0 invisible transform scale-y-0 origin-top transition-all duration-700 ease-out
         group-hover:opacity-100 group-hover:visible group-hover:scale-y-100"
                   >
-                    <ul className="grid grid-cols-3 px-48 gap-1">
+                    <ul className="grid grid-cols-3  mx-auto max-w-5xl  gap-1">
                       <li>
                         <img
                           src={sportsmenulogo}
@@ -612,13 +610,13 @@ const Header = () => {
             className="text-white hover:text-gray-300 transition"
           >
             <li
-              className={`relative inline-block ${
+              className={` inline-block ${
                 location.pathname === "/machdhora"
                   ? "border-b-2 border-yellow-300 border-r-[rgba(255,255,255,0.2)]"
                   : "border-r-[rgba(255,255,255,0.2)]" //
               } `}
             >
-              <div className="group relative border-r border-white p-2 border-opacity-20">
+              <div className="group  border-r border-white p-2 border-opacity-20">
                 মাছ ধরা
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -635,11 +633,11 @@ const Header = () => {
                   <path d="M6 9l6 6 6-6"></path>
                 </svg>
                 <div
-                  className="absolute -left-[763px]  mt-1 w-screen max-w-[99vw] bg-white text-black p-2 rounded-md shadow-xl
+                  className="absolute left-0 right-0  mt-1  bg-white text-black p-2 rounded-md shadow-xl
         opacity-0 invisible transform scale-y-0 origin-top transition-all duration-700 ease-out
         group-hover:opacity-100 group-hover:visible group-hover:scale-y-100"
                 >
-                  <ul className="grid grid-cols-6 w-11/12 gap-2 px-48   ">
+                  <ul className="grid grid-cols-6  gap-2 mx-auto max-w-5xl   ">
                     <li>
                       <img
                         src={slotlogo1}
@@ -683,13 +681,13 @@ const Header = () => {
             className="text-white hover:text-gray-300 transition"
           >
             <li
-              className={`relative inline-block ${
+              className={` inline-block ${
                 location.pathname === "/lottery"
                   ? "border-b-2 border-yellow-300 border-r-[rgba(255,255,255,0.2)]"
                   : "border-r-[rgba(255,255,255,0.2)]" //
               } `}
             >
-              <div className="group relative border-r border-white p-2 border-opacity-20">
+              <div className="group  border-r border-white p-2 border-opacity-20">
                 লটারি
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -706,12 +704,12 @@ const Header = () => {
                   <path d="M6 9l6 6 6-6"></path>
                 </svg>
                 <div
-                  className="absolute -left-[855px]  mt-1 w-screen max-w-[99vw] bg-white text-black p-2 rounded-md shadow-xl
+                  className="absolute left-0 right-0  mt-1  bg-white text-black p-2 rounded-md shadow-xl
         opacity-0 invisible transform scale-y-0 origin-top transition-all duration-700 ease-out
         group-hover:opacity-100 group-hover:visible group-hover:scale-y-100"
                 >
-                  <ul className="grid grid-cols-5 w-4/5 px-48 gap-2   ">
-                    <li>
+                  <ul className="grid grid-cols-5  mx-auto max-w-5xl  gap-2   ">
+                    <li className="w-[80%]">
                       <img
                         src={tablelogo1}
                         alt="Cricket Logo"
@@ -730,13 +728,13 @@ const Header = () => {
 
           <Link to="/crash" className="text-white hover:text-gray-300 ">
             <li
-              className={`relative inline-block ${
+              className={` inline-block ${
                 location.pathname === "/crash"
                   ? "border-b-2 border-yellow-300 border-r-[rgba(255,255,255,0.2)]"
                   : "border-r-[rgba(255,255,255,0.2)]"
               }`}
             >
-              <div className="group relative border-r border-white p-2 border-opacity-20">
+              <div className="group  border-r border-white p-2 border-opacity-20">
                 ক্র্যাশ
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -754,15 +752,11 @@ const Header = () => {
                 </svg>
                 {/* Dropdown Container */}
                 <div
-                  className="absolute -left-[935px] mt-1 w-screen max-w-[99vw] bg-white text-black p-2 rounded-md shadow-xl
+                  className="absolute left-0 right-0 mt-1  bg-white text-black p-2 rounded-md shadow-xl
       opacity-0 invisible transform scale-y-0 origin-top transition-all duration-700 ease-out
       group-hover:opacity-100 group-hover:visible group-hover:scale-y-100"
                 >
-                 
-
-
-                 
-                  <ul className="grid grid-cols-6 gap-4 px-48">
+                  <ul className="grid grid-cols-6  mx-auto max-w-5xl gap-4 ">
                     {[
                       { src: crashmenulogo1, title: "SPRIBE", icon: newicon },
                       { src: crashmenulogo2, title: "JILI", icon: betswizicon },
@@ -773,7 +767,6 @@ const Header = () => {
                       { src: crashmenulogo6, title: "Smart Soft", icon: null },
                     ].map((item, index) => (
                       <li key={index} className="flex flex-col items-center">
-                       
                         <img
                           src={item.src}
                           alt={item.title}
@@ -798,21 +791,25 @@ const Header = () => {
           </Link>
 
           <Link to="/promotion">
-            <li className={` text-white hover:text-gray-300  p-2  ${
+            <li
+              className={` text-white hover:text-gray-300  p-2  ${
                 location.pathname === "/promotion"
                   ? "border-b-2 border-yellow-300 border-r-[rgba(255,255,255,0.2)]"
                   : "border-r-[rgba(255,255,255,0.2)]"
-              } `}>
+              } `}
+            >
               প্রমোশন
             </li>
           </Link>
 
           <Link to="/jayarank" className="">
-            <li className={`font-semibold hover:text-gray-300 flex items-center  p-2 gap-1 ${
+            <li
+              className={`font-semibold hover:text-gray-300 flex items-center  p-2 gap-1 ${
                 location.pathname === "/jayarank"
                   ? "border-b-2 border-yellow-300 border-r-[rgba(255,255,255,0.2)]"
                   : "border-r-[rgba(255,255,255,0.2)]"
-              }   `}>
+              }   `}
+            >
               Jaya Rank
               <span className="px-1 py-1 bg-green-600 rounded-lg font-bold text-xs">
                 New
@@ -856,7 +853,7 @@ const Header = () => {
         /> */}
 
         {/* Small & Medium Screen - Menu Button */}
-        <div className="lg:hidden absolute top-0 left-0 flex items-center  px-4 py-2">
+        <div className="lg:hidden  absolute top-0 left-0 flex items-center  px-4 py-2 ">
           <button onClick={() => setIsOpen(!isOpen)} className="text-white">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -878,9 +875,10 @@ const Header = () => {
         {/* Sidebar Menu (Small & Medium Screen) */}
         <div
           ref={menuRef}
-          className={`fixed top-0 left-0 h-full overflow-y-auto pb-4 w-3/5  text-black bg-white  shadow-lg transform ${
+          className={`fixed  top-0 left-0 h-full overflow-y-auto pb-4 w-3/5  text-black bg-white  shadow-lg transform ${
             isOpen ? "translate-x-0" : "-translate-x-full"
-          } transition-transform duration-300 ease-in-out lg:hidden`}
+          } transition-transform duration-300 ease-in-out lg:hidden
+          `}
         >
           <button
             onClick={() => setIsOpen(false)}

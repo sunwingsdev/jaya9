@@ -6,6 +6,10 @@ import crashgamelogo3 from "../../assets/crashmenulogo3.webp";
 import crashgamelogo4 from "../../assets/crashmenulogo4.webp";
 import crashgamelogo5 from "../../assets/crashmenulogo5.webp";
 import crashgamelogo6 from "../../assets/crashmenulogo6.webp";
+import crashgamelogo7 from "../../assets/thumb.webp";
+import crashgamelogo8 from "../../assets/thumb (1).webp";
+import crashgamelogo9 from "../../assets/thumb (2).webp";
+import crashgamelogo10 from "../../assets/6704fcaf51dda.png";
 
 import hoticon from "../../assets/game-icon-hot-mobile.svg";
 import newicon from "../../assets/game-icon-new-mobile.svg";
@@ -17,6 +21,10 @@ const images = [
   { src: crashgamelogo4, alt: "Image 1", title: "PlinkoX" },
   { src: crashgamelogo5, alt: "Image 1", title: "PlinkoX" },
   { src: crashgamelogo6, alt: "Image 1", title: "PlinkoX" },
+  { src: crashgamelogo7, alt: "Image 1", title: "JetX3" },
+  { src: crashgamelogo8, alt: "Image 1", title: "Smash X" },
+  { src: crashgamelogo9, alt: "Image 1", title: "4 bonuses bonunza-Plink" },
+  { src: crashgamelogo10, alt: "Image 1", title: "GOLDEN BASIN" },
 ];
 
 const itemsPerPage = 10; // Number of images per page

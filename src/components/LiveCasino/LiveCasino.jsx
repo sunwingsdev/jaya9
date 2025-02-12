@@ -84,7 +84,6 @@ const images = [
   { src: lllogo40, alt: "Image 40", title: "Imperial Blackjack" },
 ];
 
-
 const itemsPerPage = 20; // Number of images per page
 const totalPages = Math.ceil(images.length / itemsPerPage);
 
@@ -175,50 +174,53 @@ const LiveCasino = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 px-4 pt-3 gap-4">
-  {currentImages?.map((image, index) => (
-    <div key={index} className="relative w-full h-44 bg-cover bg-center group">
-      <figure className="relative w-full h-full">
-        {/* Image Container */}
-        <div className="relative w-full h-full">
-          <img
-            src={image.src}
-            alt={image.alt}
-            className="w-full h-full object-cover rounded-md"
-          />
-          <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-50 transition duration-300"></div>
-        </div>
+        {currentImages?.map((image, index) => (
+          <div
+            key={index}
+            className="relative w-full h-44 bg-cover bg-center group"
+          >
+            <figure className="relative w-full h-full">
+              {/* Image Container */}
+              <div className="relative w-full h-full">
+                <img
+                  src={image.src}
+                  alt={image.alt}
+                  className="w-full h-full object-cover rounded-md"
+                />
+                <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-50 transition duration-300"></div>
+              </div>
 
-        {/* Play Button */}
-        <button
-        
-        className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 
+              {/* Play Button */}
+              <button
+                className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 
           text-xs bg-custom-orange text-white rounded-sm px-4 py-2 
-          opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          এখন খেলুন
-        </button>
+          opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+              >
+                এখন খেলুন
+              </button>
 
-        {/* Title */}
-        <h3 className="absolute bottom-0 left-0 w-full bg-exchange-color bg-opacity-80 text-white font-bold shadow-exchange-shadow 
-          text-xs sm:text-sm md:text-base lg:text-lg text-center px-2 py-1 truncate">
-          {image.title}
-        </h3>
+              {/* Title */}
+              <h3
+                className="absolute bottom-0 left-0 w-full bg-exchange-color bg-opacity-80 text-white font-bold shadow-exchange-shadow 
+          text-xs sm:text-sm md:text-base lg:text-lg text-center px-2 py-1 truncate"
+              >
+                {image.title}
+              </h3>
 
-        {/* Badge */}
-        {hoticon && newicon && (
-          <div className="absolute top-0 right-0">
-            <img
-              src={index < 10 ? hoticon : newicon}
-              alt="Badge Icon"
-              className="w-8 h-auto"
-            />
+              {/* Badge */}
+              {hoticon && newicon && (
+                <div className="absolute top-0 right-0">
+                  <img
+                    src={index < 10 ? hoticon : newicon}
+                    alt="Badge Icon"
+                    className="w-8 h-auto"
+                  />
+                </div>
+              )}
+            </figure>
           </div>
-        )}
-      </figure>
-    </div>
-  ))}
-</div>
-
-
+        ))}
+      </div>
 
       <div className="flex justify-center items-center my-4">
         <button

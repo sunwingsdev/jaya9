@@ -17,6 +17,7 @@ module.exports = {
         'whatsappcolor':'#4caf50',
         'uttoloncolor':'#514bbe',
         'memberinfotextcolor':'#fb8c00',
+        'mobileAppButtonColor':'#9584ff',
         
         
       },

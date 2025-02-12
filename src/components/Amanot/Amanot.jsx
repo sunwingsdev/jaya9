@@ -166,7 +166,9 @@ const Amanot = () => {
                     <img
                       src={method.logo}
                       alt={method.name}
-                      className="h-6 mx-auto mb-2"
+                      className={`h-6 mx-auto mb-2 hover:opacity-70 ${
+                        selectedMethod === method.name ? 'brightness-0 invert':''
+                      }`}
                     />
                     <h4 className="text-center text-md font-semibold">
                       {method.name}
@@ -519,7 +521,9 @@ const Amanot = () => {
                     <img
                       src={method.logo}
                       alt={method.name}
-                      className="h-6 mx-auto mb-2"
+                      className={`h-6 mx-auto mb-2 ${
+                        selectedMethod === method.name ? 'brightness-0 invert':''
+                      }`}
                     />
                     <h4 className="text-center text-md font-semibold">
                       {method.name}

@@ -2,12 +2,23 @@ import React, { useState } from "react";
 import infologo from "../../assets/personal-info.jpg";
 import memberlogo from "../../assets/memberpic.svg";
 import warninglogo from "../../assets/warning.svg";
+import { FaPlus } from "react-icons/fa";
 // import ProfileUser from "../ProfileUser/ProfileUser";
 
 const Jachaikoron = () => {
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [isAddNumberOpen, setIsAddNumberOpen] = useState(false);
   const [isOtpOpen, setIsOtpOpen] = useState(false);
+
+  const [profileImage, setProfileImage] = useState(memberlogo);
+
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const imageUrl = URL.createObjectURL(file);
+      setProfileImage(imageUrl);
+    }
+  };
 
   const generateOtp = () => {
     const otp = Math.floor(1000 + Math.random() * 9000); // Generates a 6-digit OTP
@@ -47,7 +58,7 @@ const Jachaikoron = () => {
     console.log(formData); // মডাল বন্ধ হবে
   };
   return (
-    <div className="mx-auto max-w-2xl lg:max-w-3xl px-4 lg:px-0 min-h-screen mt-12 relative ">
+    <div className="mx-auto max-w-2xl pb-5 lg:max-w-3xl px-4 lg:px-0 min-h-screen mt-12 relative ">
     {/* <ProfileUser username={memberInfo.username}/> */}
       <div className="relative">
         <img
@@ -55,11 +66,31 @@ const Jachaikoron = () => {
           alt=""
           className="max-h-28 w-full md:max-h-32 rounded-2xl lg:max-h-32 "
         />
-        <img
-          src={memberlogo}
-          alt=""
-          className="w-20 h-auto absolute top-20 left-1/2 transform -translate-x-1/2"
-        />
+        <div className="relative w-24 h-24 mx-auto">
+      {/* Profile Image */}
+      <img
+        src={profileImage || "https://via.placeholder.com/150"}
+        alt="Profile"
+        className="w-24 h-24 rounded-full border border-gray-300 object-cover"
+      />
+
+      {/* Hidden File Input */}
+      <input
+        type="file"
+        accept="image/*"
+        onChange={handleImageChange}
+        className="hidden"
+        id="fileInput"
+      />
+
+      {/* Upload Button (+ Icon) */}
+      <label
+        htmlFor="fileInput"
+        className="absolute bottom-1 right-1 bg-common-blue text-white p-2 rounded-full cursor-pointer shadow-md"
+      >
+        <FaPlus className="w-4 h-4" />
+      </label>
+    </div>
       </div>
 
       <div>

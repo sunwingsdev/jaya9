@@ -2,6 +2,7 @@ import React from "react";
 import refferencebanner from "../../assets/referral_banner2.jpg";
 import referelpeopleimg from "../../assets/referral-people.svg";
 import referelinfologo from "../../assets/referral-info.svg";
+import downloadlogo from "../../assets/download.png";
 
 const Refference = () => {
   return (
@@ -21,7 +22,6 @@ const Refference = () => {
               Redeem History
             </button>
           </div>
-          
         </div>
         <div className="flex px-4 py-4 flex-col lg:justify-around lg:space-x-3 items-center lg:flex-row lg:items-baseline gap-3">
           <div>
@@ -158,14 +158,19 @@ const Refference = () => {
             </div>
             <div className="bg-gray-300">
               <div className="p-10 px-16">
-                <h3 className="text-sm text-gray-600">
-                  Id: <br />
-                  রেফারেল কোড:
-                </h3>
+                <div className="grid grid-cols-2 text-md font-bold lg:text-sm gap-x-12 lg:gap-4">
+                  <h3 className=" text-gray-600">Id:</h3>
+                  <h3 className="text-sm text-gray-600">2134670</h3>
+                  <p className="text-sm text-gray-600 whitespace-nowrap">রেফারেল কোড:</p>
+                  <p className="text-sm text-gray-600">GMG3AD3904</p>
+                </div>
                 <div className="relative pt-6">
-                  <button className="bg-common-orange w-full max-w-xs   text-white text-sm px-16 py-1 rounded-md">
+                  <div className="flex flex-col items-center gap-y-2">
+                  <img src={downloadlogo} alt="" />
+                  <button className="bg-common-orange w-full max-w-xs   text-white text-sm px-16 py-1 whitespace-nowrap rounded-md">
                     এখন শেয়ার
                   </button>
+                  </div>
                   <span className="absolute bottom-1 left-2">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"

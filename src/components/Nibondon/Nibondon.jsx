@@ -39,7 +39,7 @@ const Nibondon = () => {
               type="text"
               name="username"
               placeholder="এখানে পূরণ করুন"
-              className="w-full p-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-red-500"
+              className="w-full p-2  border border-gray-400 rounded-md focus:outline-none focus:ring-1 focus:ring-red-500"
               value={formData.username}
               onChange={handleChange}
             />
@@ -50,7 +50,7 @@ const Nibondon = () => {
               type="password"
               name="password"
               placeholder="এখানে পূরণ করুন"
-              className="w-full p-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-red-500"
+              className="w-full p-2 border border-gray-400 rounded-md focus:outline-none focus:ring-1 focus:ring-red-500"
               value={formData.password}
               onChange={handleChange}
             />
@@ -61,7 +61,7 @@ const Nibondon = () => {
               type="password"
               name="confirmPassword"
               placeholder="এখানে পূরণ করুন"
-              className="w-full p-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-red-500"
+              className="w-full p-2 border border-gray-400 rounded-md focus:outline-none focus:ring-1 focus:ring-red-500"
               value={formData.confirmPassword}
               onChange={handleChange}
             />
